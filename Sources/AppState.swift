@@ -73,12 +73,28 @@ final class AppState: ObservableObject {
         hotkeyManager.onTrigger = { [weak self] in
             self?.handleHotkeyTrigger()
         }
-        hotkeyManager.start()
 
         doubleCommandDetector.onDoubleCommand = { [weak self] in
             self?.handleHotkeyTrigger()
         }
-        doubleCommandDetector.start()
+
+        updateHotkeyState()
+    }
+
+    func updateHotkeyState() {
+        let settings = settingsStore.settings
+
+        if settings.enableCtrlSpace {
+            hotkeyManager.start()
+        } else {
+            hotkeyManager.stop()
+        }
+
+        if settings.enableDoubleCommand {
+            doubleCommandDetector.start()
+        } else {
+            doubleCommandDetector.stop()
+        }
     }
 
     func captureAndTranslateSelection(triggerSource: String = "selection", captureDelay: Duration = .zero) {
@@ -188,7 +204,12 @@ final class AppState: ObservableObject {
     }
 
     func openSettings() {
-        NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+        // 使用 Command+, 快捷键打开设置
+        if #available(macOS 13, *) {
+            NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+        } else {
+            NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
+        }
         NSApp.activate(ignoringOtherApps: true)
     }
 

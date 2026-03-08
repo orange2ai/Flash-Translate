@@ -74,8 +74,8 @@ struct TranslationPopoverView: View {
 
                 Spacer()
 
-                Button("打开设置") {
-                    appState.openSettings()
+                SettingsLink {
+                    Text("打开设置")
                 }
                 .disabled(appState.isLoading)
 

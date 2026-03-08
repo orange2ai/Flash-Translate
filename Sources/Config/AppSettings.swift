@@ -5,8 +5,10 @@ struct AppSettings: Codable, Equatable {
     var provider: TranslationProvider = .google
     var baseURL: String = ""
     var apiKey: String = ""
-    var model: String = "gpt-4.1-mini"
+    var model: String = "openai/gpt-5-nano"
     var hotkey: KeyboardShortcut = .defaultShortcut
+    var enableCtrlSpace: Bool = true
+    var enableDoubleCommand: Bool = true
 
     var hotkeyDisplay: String {
         get { hotkey.displayString }
@@ -29,7 +31,7 @@ enum TranslationProvider: String, Codable, CaseIterable, Identifiable {
         case .google:
             return "Google"
         case .openAICompatible:
-            return "Custom"
+            return "OpenAI Compatible"
         }
     }
 }

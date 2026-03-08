@@ -30,4 +30,7 @@
 - **修复窗口位置闪烁**：窗口已打开时不重复触发，避免窗口从旧位置移动到新位置的闪烁问题。每次打开新窗口时在透明状态下创建，然后淡入显示。
 - 编译验证通过，`BUILD SUCCEEDED`。功能测试通过，双击 Command 可以正常取词翻译。
 - **发布 v1.0 版本**：编译 Release 版本并打包成 DMG 安装包（FlashTranslate-v1.0.dmg，392KB）。
+- **完善设置界面**：将翻译服务选择改为分段选择器（Google / OpenAI Compatible），Google 模式下不显示 API 配置，OpenAI Compatible 模式下显示 Base URL、API Key、Model 配置项。添加占位符文本（Base URL: `https://api.openai.com/v1`，API Key: `sk-...`，Model: `openai/gpt-5-nano`）和帮助文本说明 Base URL 格式。添加"测试翻译"按钮，点击后使用"测试翻译"四个字进行实际翻译测试，显示成功或失败结果。设置采用自动保存机制，无需保存按钮。
+- **更新默认模型**：将默认 model 从 `gpt-4.1-mini` 改为 `openai/gpt-5-nano`，适配最新的 OpenAI 兼容 API。
+- **发布 v1.1 版本**：编译 Release 版本并打包成 DMG 安装包（FlashTranslate-v1.1.dmg，425KB）。
 
